@@ -116,4 +116,21 @@ func (trx *Transaction) Check_order() {
 	//fmt.Printf("Invalid product found %s, please change\n", item)
 }
 
-func (trx *Transaction) Total_price() {}
+func (trx *Transaction) Total_price() {
+	var total int64
+	var disc int64
+	total = 0
+	for item, iteminfo := range trx.Cart {
+		total += (Products.PData[item] * int64(iteminfo.Qty))
+	}
+	if total >= 100000 {
+		disc = 5
+	} else if total >= 200000 {
+		disc = 10
+	} else if total >= 500000 {
+		disc = 20
+	}
+	fmt.Printf("Subtotal is %d with a discount of %d%% (%d)", total, disc, ((total / 100) * disc))
+	total = total - ((total / 100) * disc)
+	fmt.Printf("Total: %d", total)
+}

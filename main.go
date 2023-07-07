@@ -34,5 +34,6 @@ func main() {
 	Trx.Add_items("Mainan Mobil", 1, 200000)
 	Trx.Add_items("Pasta Gigi", 2, 15000)
 	Trx.Check_order()
+	Trx.Total_price()
 
 }
